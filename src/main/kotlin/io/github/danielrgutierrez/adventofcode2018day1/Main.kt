@@ -4,7 +4,14 @@ import java.io.File
 
 fun main(args: Array<String>) {
     val frequencies = mutableListOf<Int>()
-    File(args[0]).forEachLine(Charsets.UTF_8) { frequencies.add(it.toInt()) }
+
+    try {
+        File(args[0]).forEachLine(Charsets.UTF_8) { frequencies.add(it.toInt()) }
+    }
+    catch (e: Exception) {
+        println("Usage: java -jar advent-of-code-2018-day-1-1.0.jar <input file>")
+        System.exit(-1)
+    }
 
     val resultingFrequency = calcResultingFrequency(frequencies)
 
